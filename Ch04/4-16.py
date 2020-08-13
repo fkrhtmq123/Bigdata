@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split, cross_val_score
 
 # 붓꽃 데이터 프레임 생성
 df_iris = pd.read_csv('./data/iris.csv')
-print(df_iris)
+#print(df_iris)
 
 # 붓꽃 상관분석 차트 출력
 sns.pairplot(df_iris, hue='variety')
@@ -31,14 +31,14 @@ model.fit(train_data, train_label)
 
 # 검증하기
 result = model.predict(test_data)
-print(result)
+#print(result)
 
 # 정답률(학습률) 확인
 score = metrics.accuracy_score(test_label, result)
 print('학습률 : ',score * 100)
 
-# 모델 평가 - K교차검증
-cross_score = cross_val_score(model, train_data, train_label)
+# 모델 평가 - K교차검증(cv : 횟수)
+cross_score = cross_val_score(model, train_data, train_label, cv=10)
 cross_score_mean = cross_score.mean()
 print('모델 성능 점수 : ', cross_score * 100)
 print('모델 성능 평균 : ', cross_score_mean * 100)
